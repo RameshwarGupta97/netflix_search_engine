@@ -1,0 +1,62 @@
+<head>
+    <title>Netflix Search</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        form{
+            float:left;
+            margin-left:50px; /* this gives space for the label on the left */
+            clear:both; /* prevent elements from stacking weirdly */
+        }
+        h1{
+            float:left;
+            margin-left:50px; /* this gives space for the label on the left */
+            clear:both; /* prevent elements from stacking weirdly */
+        }
+        input[type=text] {
+              padding: 10px;
+              font-size: 17px;
+              border: 1px solid grey;
+              float: left;
+              width: 80%;
+              background: #f1f1f1;
+        }
+        body {
+            background-image: url('https://assets.brand.microsites.netflix.io/assets/df87ee0c-c4ea-11e7-8d40-066b49664af6_cm_800w.png?v=16%22');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-color:#000000;
+        }
+        ol {
+            color:#FFFF;
+        }
+    </style>
+</head>
+<body>
+<form   method="get">
+
+    <h1><span class="label label-primary" >Search Results:</span></h1><br><br><br><br><br><br><br><br>
+
+    <ol>
+        {% for movie in object_list %}
+        <li>
+            {% for items, value in movie.items %}
+                {% if items == 'image' %}
+                        <img src={{ value }} alt="movie" width="200" height="200">
+                {% endif %}
+            {% endfor %}
+            {% for items, value in movie.items %}
+                {% if items != 'image' %}
+                    <h4><span class="label label-default" >{{ items }}</span> -  &nbsp;&nbsp;&nbsp;    <span class="label label-success" >{{ value }}</span></h4>
+                {% endif %}
+            {% endfor %}
+            <br><br><br><br>
+        </li>
+        {% endfor %}
+    </ol>
+</form>
+</body>
